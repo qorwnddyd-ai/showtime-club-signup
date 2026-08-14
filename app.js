@@ -13,6 +13,10 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
   message.textContent = "";
   message.className = "message";
+
+  // 봇 방지용 허니팟: 사람 눈에는 안 보이는 필드라 채워져 있으면 봇으로 간주
+  if (form.website.value) return;
+
   submitBtn.disabled = true;
 
   const { error } = await sb.from("applications").insert({
@@ -23,7 +27,9 @@ form.addEventListener("submit", async (e) => {
   });
 
   if (error) {
-    message.textContent = "신청에 실패했습니다. 잠시 후 다시 시도해 주세요.";
+    message.textContent = error.code === "23505"
+      ? "이미 신청된 학번입니다."
+      : "신청에 실패했습니다. 잠시 후 다시 시도해 주세요.";
     message.classList.add("error");
     submitBtn.disabled = false;
     return;
