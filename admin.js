@@ -2,28 +2,33 @@
 const SUPABASE_URL = "https://ymusefnchwhzoudqkglf.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_1E3CLbvrf1l_w0Zga2q7xw_UvUyjo8G";
 
-// 소모임 관리자끼리만 공유하는 비밀번호. 코드에 노출되므로 민감한 용도로는 쓰지 마세요.
-const ADMIN_PASSWORD = "showtime2026";
-
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const loginCard = document.getElementById("login-card");
 const listCard = document.getElementById("list-card");
+const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const loginMessage = document.getElementById("login-message");
 const tableBody = document.getElementById("applications-body");
 const countEl = document.getElementById("count");
 
-document.getElementById("login-btn").addEventListener("click", checkPassword);
+document.getElementById("login-btn").addEventListener("click", login);
 passwordInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") checkPassword();
+  if (e.key === "Enter") login();
 });
 
-async function checkPassword() {
-  if (passwordInput.value !== ADMIN_PASSWORD) {
-    loginMessage.textContent = "비밀번호가 올바르지 않습니다.";
+async function login() {
+  loginMessage.textContent = "";
+  const { error } = await sb.auth.signInWithPassword({
+    email: emailInput.value.trim(),
+    password: passwordInput.value,
+  });
+
+  if (error) {
+    loginMessage.textContent = "로그인에 실패했습니다.";
     return;
   }
+
   loginCard.hidden = true;
   listCard.hidden = false;
   await loadApplications();
@@ -61,3 +66,12 @@ async function loadApplications() {
     tableBody.appendChild(row);
   }
 }
+
+// 이미 로그인된 세션이 있으면 바로 목록 표시
+sb.auth.getSession().then(({ data }) => {
+  if (data.session) {
+    loginCard.hidden = true;
+    listCard.hidden = false;
+    loadApplications();
+  }
+});
