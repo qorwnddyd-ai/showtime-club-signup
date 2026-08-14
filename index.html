@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쇼타임 소모임 참여신청</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <h1>쇼타임 소모임 참여신청</h1>
+    <p class="subtitle">아래 정보를 입력하고 신청해 주세요.</p>
+
+    <form id="signup-form">
+      <label for="name">이름 *</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="student_id">학번 *</label>
+      <input type="text" id="student_id" name="student_id" required>
+
+      <label for="phone">연락처 *</label>
+      <input type="tel" id="phone" name="phone" placeholder="01012345678" pattern="[0-9]{9,11}" inputmode="numeric" required>
+
+      <label for="motivation">지원동기 *</label>
+      <textarea id="motivation" name="motivation" rows="4" required></textarea>
+
+      <button type="submit" id="submit-btn">신청하기</button>
+    </form>
+
+    <p id="message" class="message" role="status"></p>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>

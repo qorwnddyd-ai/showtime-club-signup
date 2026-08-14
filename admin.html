@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쇼타임 신청자 관리</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="card admin-card" id="login-card">
+    <h1>관리자 로그인</h1>
+    <label for="password">비밀번호</label>
+    <input type="password" id="password">
+    <button type="button" id="login-btn">로그인</button>
+    <p id="login-message" class="message error"></p>
+  </main>
+
+  <main class="admin-card" id="list-card" hidden>
+    <h1>쇼타임 신청자 목록 (<span id="count">0</span>명)</h1>
+    <table id="applications-table">
+      <thead>
+        <tr>
+          <th>이름</th>
+          <th>학번</th>
+          <th>연락처</th>
+          <th>지원동기</th>
+          <th>신청일시</th>
+        </tr>
+      </thead>
+      <tbody id="applications-body"></tbody>
+    </table>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
