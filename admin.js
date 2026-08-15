@@ -37,12 +37,14 @@ async function login() {
   await loadApplications();
 }
 
-async function logout() {
-  await sb.auth.signOut();
+function logout() {
+  // 네트워크 응답을 기다리지 않고 화면부터 즉시 전환 (신청자 정보가 화면에 남아있지 않도록)
   listCard.hidden = true;
   loginCard.hidden = false;
+  tableBody.innerHTML = "";
   emailInput.value = "";
   passwordInput.value = "";
+  sb.auth.signOut();
 }
 
 async function loadApplications() {
