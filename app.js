@@ -17,13 +17,24 @@ form.addEventListener("submit", async (e) => {
   // 봇 방지용 허니팟: 사람 눈에는 안 보이는 필드라 채워져 있으면 봇으로 간주
   if (form.website.value) return;
 
+  const name = form.name.value.trim();
+  const studentId = form.student_id.value.trim();
+  const phone = form.phone.value.replace(/\D/g, "");
+  const motivation = form.motivation.value.trim();
+
+  if (!name || !studentId || !motivation) {
+    message.textContent = "공백만으로는 신청할 수 없습니다.";
+    message.classList.add("error");
+    return;
+  }
+
   submitBtn.disabled = true;
 
   const { error } = await sb.from("applications").insert({
-    name: form.name.value.trim(),
-    student_id: form.student_id.value.trim(),
-    phone: form.phone.value.replace(/\D/g, ""),
-    motivation: form.motivation.value.trim(),
+    name,
+    student_id: studentId,
+    phone,
+    motivation,
   });
 
   if (error) {

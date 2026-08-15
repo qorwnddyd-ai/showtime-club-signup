@@ -18,20 +18,25 @@
     <p id="login-message" class="message error"></p>
   </main>
 
-  <main class="admin-card" id="list-card" hidden>
-    <h1>쇼타임 신청자 목록 (<span id="count">0</span>명)</h1>
-    <table id="applications-table">
-      <thead>
-        <tr>
-          <th>이름</th>
-          <th>학번</th>
-          <th>연락처</th>
-          <th>지원동기</th>
-          <th>신청일시</th>
-        </tr>
-      </thead>
-      <tbody id="applications-body"></tbody>
-    </table>
+  <main class="card admin-card" id="list-card" hidden>
+    <div class="list-header">
+      <h1>쇼타임 신청자 목록 (<span id="count">0</span>명)</h1>
+      <button type="button" id="logout-btn">로그아웃</button>
+    </div>
+    <div class="table-scroll">
+      <table id="applications-table">
+        <thead>
+          <tr>
+            <th>이름</th>
+            <th>학번</th>
+            <th>연락처</th>
+            <th>지원동기</th>
+            <th>신청일시</th>
+          </tr>
+        </thead>
+        <tbody id="applications-body"></tbody>
+      </table>
+    </div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

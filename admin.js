@@ -13,9 +13,12 @@ const tableBody = document.getElementById("applications-body");
 const countEl = document.getElementById("count");
 
 document.getElementById("login-btn").addEventListener("click", login);
-passwordInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") login();
-});
+document.getElementById("logout-btn").addEventListener("click", logout);
+for (const input of [emailInput, passwordInput]) {
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") login();
+  });
+}
 
 async function login() {
   loginMessage.textContent = "";
@@ -32,6 +35,14 @@ async function login() {
   loginCard.hidden = true;
   listCard.hidden = false;
   await loadApplications();
+}
+
+async function logout() {
+  await sb.auth.signOut();
+  listCard.hidden = true;
+  loginCard.hidden = false;
+  emailInput.value = "";
+  passwordInput.value = "";
 }
 
 async function loadApplications() {

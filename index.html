@@ -15,16 +15,16 @@
       <input type="text" name="website" id="website" autocomplete="off" tabindex="-1" class="hp-field">
 
       <label for="name">이름 *</label>
-      <input type="text" id="name" name="name" required>
+      <input type="text" id="name" name="name" maxlength="30" required>
 
       <label for="student_id">학번 *</label>
-      <input type="text" id="student_id" name="student_id" required>
+      <input type="text" id="student_id" name="student_id" maxlength="20" required>
 
       <label for="phone">연락처 *</label>
-      <input type="tel" id="phone" name="phone" placeholder="01012345678" pattern="[0-9]{9,11}" inputmode="numeric" required>
+      <input type="tel" id="phone" name="phone" placeholder="01012345678" pattern="[0-9]{9,11}" inputmode="numeric" maxlength="11" required>
 
       <label for="motivation">지원동기 *</label>
-      <textarea id="motivation" name="motivation" rows="4" required></textarea>
+      <textarea id="motivation" name="motivation" rows="4" placeholder="예: 농구활동, 친목" maxlength="500" required></textarea>
 
       <button type="submit" id="submit-btn">신청하기</button>
     </form>
