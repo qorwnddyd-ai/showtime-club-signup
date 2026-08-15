@@ -20,7 +20,7 @@
 
   <main class="card admin-card" id="list-card" hidden>
     <div class="list-header">
-      <h1>쇼타임 신청자 목록 (<span id="count">0</span>명)</h1>
+      <h1>쇼타임 신청자 목록 (<span id="count">-</span>명)</h1>
       <button type="button" id="logout-btn">로그아웃</button>
     </div>
     <div class="table-scroll">
@@ -34,7 +34,9 @@
             <th>신청일시</th>
           </tr>
         </thead>
-        <tbody id="applications-body"></tbody>
+        <tbody id="applications-body">
+        <tr><td colspan="5">불러오는 중...</td></tr>
+      </tbody>
       </table>
     </div>
   </main>
