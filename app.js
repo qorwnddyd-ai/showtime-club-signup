@@ -46,7 +46,7 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  message.textContent = "신청이 완료되었습니다!";
+  message.textContent = "✅ 신청이 완료되었습니다!";
   message.classList.add("success");
   form.reset();
   submitBtn.disabled = false;

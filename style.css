@@ -82,5 +82,20 @@ button:disabled {
   text-align: center;
 }
 
-.message.success { color: #1a7f37; }
-.message.error { color: #c0392b; }
+.message.success,
+.message.error {
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.message.success {
+  color: #1a7f37;
+  background: #e6f4ea;
+}
+
+.message.error {
+  color: #c0392b;
+  background: #fbeaea;
+}
